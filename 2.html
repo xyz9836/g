@@ -31,74 +31,82 @@
 {% endblock %}
 {% block content %}
 
-    <div class="row">    
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
-                    <h5>上传速度</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-arrow-circle-up fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right" style="padding-left: 5px;">
-                            <h1 class="no-margins" style="font-weight: bold;" id="live_speed"></h1>
-                            <small style="font-weight: bold;"><span id="speed_unit"></span>B/s</small>
-                        </div>
-                    </div>
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ info_msg|safe }}
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
-                    <h5>下载速度</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-arrow-circle-down fa-4x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right" style="padding-left: 5px;">
-                            <h1 class="no-margins" style="font-weight: bold;" id="down_speed"></h1>
-                            <small style="font-weight: bold;"><span id="speed2_unit"></span>B/s</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
+    {% endif %}
+   <div class="row">
+        {% for item in user_info.boxes_sel %}
+            {% if item == '实时上传速度' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
-                            <table width="262" height="168" align="left">
-                              <tr align="center">
-                                <td style="color:#c2c2c2;font-weight:bold;font-size: 16px" id="pause_miner">-</td>
-                                <td style="color:#f8ac59; font-weight:bold;font-size: 16px" id="exception_miner">-</td>
-                                <td style="color:#ed5565; font-weight:bold;font-size: 16px" id="offline_miner">-</td>
-                                <td style="color:#23c6c8; font-weight:bold;font-size: 16px" id="total_miner">-</td>
-                              </tr>
-                              <tr align="center">
-                                <td style="color:#c2c2c2; font-weight:bold;font-size: 11px;padding: 3px">暂停</td>
-                                <td style="color:#f8ac59; font-weight:bold;font-size: 11px;padding: 3px">异常</td>
-                                <td style="color:#ed5565; font-weight:bold;font-size: 11px;padding: 3px">断网</td>
-                                <td style="color:#23c6c8; font-weight:bold;font-size: 11px;padding: 3px">在线</td>
-                              </tr>
-                          </table>
-                            <h5>矿机状态</h5>
-                      </div>
+                            <h5>上传速度</h5>
+                        </div>
                         <div class="ibox-content">
                             <div class="row">
-                              <div class="col-xs-9 text-right" style="padding-left: 5px;"></div>
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 class="no-margins" style=" font-weight: bold;" id="live_speed"></h1>
+                                    <small style=" font-weight: bold;"><span id="speed_unit"></span>B/s</small>
+                                </div>
                             </div>
                         </div>
                     </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
+                </div>
+            {% elif item == '实时下载速度' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
+                            <h5>下载速度</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 class="no-margins" style=" font-weight: bold;" id="down_speed"></h1>
+                                    <small style=" font-weight: bold;"><span id="speed2_unit"></span>B/s</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% elif item == '实时矿机状态' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
+                            <h5>矿机状态</h5>
+                        </div>
+                        <div class="ibox-content" style="height: 87px">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <table align="right">
+                                    <tr align="center">
+                                      <td style="color:#c2c2c2;font-weight:bold;font-size: 16px" id="pause_miner">-</td>
+                                      <td style="color:#f8ac59; font-weight:bold;font-size: 16px" id="exception_miner">-</td>
+                                      <td style="color:#ed5565; font-weight:bold;font-size: 16px" id="offline_miner">-</td>
+                                      <td style="color:#23c6c8; font-weight:bold;font-size: 16px" id="total_miner">-</td>
+                                    </tr>
+                                    <tr align="center">
+                                      <td style="color:#c2c2c2; font-weight:bold;font-size: 11px;padding: 3px">暂停</td>
+                                      <td style="color:#f8ac59; font-weight:bold;font-size: 11px;padding: 3px">异常</td>
+                                      <td style="color:#ed5565; font-weight:bold;font-size: 11px;padding: 3px">断网</td>
+                                      <td style="color:#23c6c8; font-weight:bold;font-size: 11px;padding: 3px">在线</td>
+                                    </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           {% elif item == '实时UPNP状态' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right" style="padding-top: 5px;">实时</span>
@@ -106,8 +114,8 @@
                         </div>
                         <div class="ibox-content" style="height: 87px">
                             <div class="row">
-                                <div class="col-xs-12 text-right" style="padding-left: 5px;">
-                                    <table width="217" height="142" align="center">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <table align="right">
                                     <tr align="center">
                                       <td style="color:#c2c2c2;font-weight:bold;font-size: 16px" id="pause_pnp">-</td>
                                       <td style="color:#f8ac59; font-weight:bold;font-size: 16px" id="exception_pnp">-</td>
@@ -120,75 +128,80 @@
                                       <td style="color:#ed5565; font-weight:bold;font-size: 11px;padding: 3px">失败</td>
                                       <td style="color:#23c6c8; font-weight:bold;font-size: 11px;padding: 3px">成功</td>
                                     </tr>
-                                  </table>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-info pull-right" style="padding-top: 5px;">今日</span>
-                    <h5>水晶产量</h5>
                 </div>
-                <div class="ibox-content" style="height: 88px;">
-                    <div class="row">
-                        <div class="col-xs-12 text-right" style="padding-left: 5px;" id="expected_font">
-                            <h1 style="font-weight: bold;" class="no-margins" id="pdc"></h1>
+            {% elif item == '今日矿场产量' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-info pull-right" style="padding-top: 5px;">今日</span>
+                            <h5>矿场产量</h5>
+                        </div>
+                        <div class="ibox-content" style="height: 88px;">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 style="font-size: 33px; font-weight: bold;" class="no-margins" id="pdc"></h1>
+                                    <small style=" font-weight: bold;"><span id="pdc_unit"></span></small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-info pull-right" style="padding-top: 5px;">今日</span>
-                    <h5>宝箱收益</h5>
-                </div>
-                <div class="ibox-content" style="height: 88px;">
-                    <div class="row">
-                        <div class="col-xs-12 text-right" style="padding-left: 5px;" id="expected_font">
-                            <h1 style="font-weight: bold;" class="no-margins" id="b_pdc"></h1>
+            {% elif item == '本周水晶收益' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-primary pull-right" style="padding-top: 5px;">本周</span>
+                            <h5>水晶收益</h5>
+                        </div>
+                        <div class="ibox-content" style="height: 88px;">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 style="font-size: 33px; font-weight: bold;" class="no-margins" id="w_pdc"></h1>
+                                    <small style=" font-weight: bold;"><span id="w_pdc_unit"></span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div >
+            {% elif item == '本月水晶收益' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-danger pull-right" style="padding-top: 5px;">本月</span>
+                            <h5>水晶收益</h5>
+                        </div>
+                        <div class="ibox-content" style="height: 88px;">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 style="font-size: 33px; font-weight: bold;" class="no-margins" id="m_pdc"></h1>
+                                    <small style=" font-weight: bold;"><span id="m_pdc_unit"></span></small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right" style="padding-top: 5px;">本周</span>
-                    <h5>水晶产量</h5>
-                </div>
-                <div class="ibox-content" style="height: 88px;">
-                    <div class="row">
-                        <div class="col-xs-12 text-right" style="padding-left: 5px;" id="expected_font">
-                            <h1 style="font-weight: bold;" class="no-margins" id="w_pdc"></h1>
+            {% elif item == '今日宝箱转盘' %}
+                <div class="col-lg-2 col-md-3 col-xs-6" style='min-height: 4em'>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-info pull-right" style="padding-top: 5px;border:none;">今日</span>
+                            <h5>宝箱转盘</h5>
+                        </div>
+                        <div class="ibox-content" style="height: 88px;">
+                            <div class="row">
+                                <div class="col-lg-12 text-right" style="padding-left: 5px;">
+                                    <h1 style="font-size: 33px; font-weight: bold;" class="no-margins" id="b_pdc"></h1>
+                                    <small style=" font-weight: bold;"><span id="td_award_income_unit"></span></small>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-danger pull-right" style="padding-top: 5px;">本月</span>
-                    <h5>水晶产量</h5>
-                </div>
-                <div class="ibox-content" style="height: 88px;">
-                    <div class="row">
-                        <div class="col-xs-12 text-right" style="padding-left: 5px;" id="expected_font">
-                            <h1 style="font-weight: bold;" class="no-margins" id="m_pdc"></h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div >
 
         <div class="col-lg-3 col-xs-6">
             <div class="ibox float-e-margins">
